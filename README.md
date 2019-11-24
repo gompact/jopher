@@ -5,18 +5,18 @@ Easy JSON responses for Go on top of net/http
 #### Install
 
 ```bash
-go get github.com/emostafa/jopher
+go get github.com/gompact/jopher
 ```
 
 
 #### Usage
 
-import jopher to your project
+import Jopher to your project
 
 ```go
 import (
     ...
-    "jopher"
+    "github.com/gompact/jopher"
 )
 ```
 
@@ -98,6 +98,7 @@ func fooHandler(w http.ResponseWriter, r *http.Request) {
     err := db.Insert(&Post{"foo title", "bar body"})
     if err != nil {
         jopher.Error(w, 500, err)
+        return
     }
     ...
 }
@@ -119,6 +120,7 @@ func fooHandler(w http.ResponseWriter, r *http.Request) {
     // e.g: validate request body parameters
     if req_body.Get("email") == nil {
         jopher.BadRequest(w, errors.New("Email field is required"))
+        return
     }
 }
 ```
@@ -139,6 +141,7 @@ func fooHandler(w http.ResponseWriter, r *http.Request) {
     db.Insert(&Post{"foo title", "bar body"})
     if user == nil {
         jopher.Unauthorized(w, errors.New("You dont have permission to create a new post"))
+        return
     }
     ...
 }
@@ -160,6 +163,7 @@ func fooHandler(w http.ResponseWriter, r *http.Request) {
     c, _ := db.Count("users", &user{"foo@bar.com"})
     if c < 1 {
         jopher.NotFound(w, errors.New("User was not found"))
+        return
     }
     ...
 }
@@ -181,6 +185,7 @@ func fooHandler(w http.ResponseWriter, r *http.Request) {
     err := db.Insert(&Post{"foo title", "bar body"})
     if err != nil {
         jopher.InternalServerError(w, err)
+        return
     }
     ...
 }

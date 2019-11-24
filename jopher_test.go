@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestSuccessResponse(t *testing.T) {
+func TestSuccess(t *testing.T) {
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		Success(w, M{"Hello": "World"})
 	}
@@ -26,7 +26,6 @@ func TestSuccessResponse(t *testing.T) {
 	defer resp.Body.Close()
 
 	// parse body as json
-
 	if body["Hello"] != "World" {
 		t.Log("Failed to get correct values from response body")
 		t.Fail()
