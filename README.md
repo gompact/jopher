@@ -1,5 +1,7 @@
 # Jopher
 
+![https://github.com/gompact/jopher/actions?query=workflow%3AGo](https://github.com/gompact/jopher/workflows/Go/badge.svg)
+
 Easy JSON responses for Go on top of net/http
 
 #### Install
